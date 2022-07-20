@@ -1,4 +1,4 @@
-package com.example.iroribank.entity;
+package com.example.iroribank.model.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
