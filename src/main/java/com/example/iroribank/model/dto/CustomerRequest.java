@@ -4,18 +4,16 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
 import io.swagger.annotations.ApiModelProperty;
-import lombok.Builder;
-import lombok.Getter;
+
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-@Builder
-@Getter
+@NoArgsConstructor
+@Data
 @ToString
 @JsonDeserialize(builder = CustomerRequest.CustomerRequestBuilder.class)
 public class CustomerRequest {
-
-  @ApiModelProperty(value = "id", example = "64")
-  Integer id;
 
   @ApiModelProperty(value = "username", required = true)
   String userName;
