@@ -12,7 +12,7 @@ public interface AccountService {
 
   List<Account> getAllAccount();
   AccountRequest getAccountById(Integer id);
-  void updateAccount(AccountRequest accountRequest) throws AccountNotFoundException;
+  void updateAccount(Integer accountId,AccountRequest accountRequest) throws AccountNotFoundException;
   void addAccount(AccountRequest accountRequest);
   void deleteAccount(Integer id);
 }

@@ -6,9 +6,7 @@ import com.example.iroribank.model.dto.AccountRequest;
 import com.example.iroribank.model.entity.Account;
 import com.example.iroribank.repo.AccountRepository;
 import lombok.extern.slf4j.Slf4j;
-
 import org.springframework.stereotype.Service;
-
 
 import java.util.List;
 import java.util.Optional;
@@ -45,20 +43,20 @@ public class AccountServiceImpl implements AccountService{
   }
 
   @Override
-  public void updateAccount(AccountRequest accountRequest) throws AccountNotFoundException {
-    log.info("Updating account by accountId {}", accountRequest.getId());
-    Optional<Account> accountData = accountRepository.findById(accountRequest.getId());
+  public void updateAccount(Integer accountId,AccountRequest accountRequest) throws AccountNotFoundException {
+    log.info("Updating account by accountId {}", accountId);
+    Optional<Account> accountData = accountRepository.findById(accountId);
     if (accountData.isPresent()) {
       Account accountInfo = accountData.get();
       if(accountInfo.getCustomer().getId().equals(accountRequest.getCustomerId())) {
-       Account account = mapper.accountRequestToAccount(accountRequest);
+        accountInfo = mapper.accountRequestToAccount(accountRequest);
         accountRepository.save(accountInfo);
       } else {
-        log.warn("Can not find customerId{} by accountId{}", accountRequest.getCustomerId(), accountRequest.getId());
+        log.warn("Can not find customerId{} by accountId{}", accountRequest.getCustomerId(), accountId);
       }
     } else {
-      log.warn("Account can not find by id{}",accountRequest.getId());
-      throw new AccountNotFoundException("Cannot fid account with id: " + accountRequest.getId());
+      log.warn("Account can not find by id{}",accountId);
+      throw new AccountNotFoundException("Cannot fid account with id: " + accountId);
     }
   }
 

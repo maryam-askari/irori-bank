@@ -17,9 +17,6 @@ import lombok.ToString;
 @JsonDeserialize(builder = AccountRequest.AccountRequestBuilder.class)
 public class AccountRequest {
 
-  @ApiModelProperty(value = "id", example = "64", required = true)
-  private Integer id;
-
   @ApiModelProperty(value = "customerId", example = "64", required = true)
   private Integer customerId;
 
