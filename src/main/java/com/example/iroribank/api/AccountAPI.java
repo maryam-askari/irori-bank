@@ -9,15 +9,15 @@ import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-
-import javax.validation.Valid;
 
 
 @Tag(name = "Account")
@@ -34,7 +34,7 @@ public interface AccountAPI {
       @ApiResponse(responseCode = "405", description = "Validation exception")
   })
   @PutMapping("/update-account")
-  ResponseEntity updateAccount(@Valid @ApiParam(value = "Account for updating", required = true)
+  ResponseEntity updateAccount(@Validated @ApiParam(value = "Account for updating")
                                @RequestBody AccountRequest accountRequest);
 
   @Operation(summary = "add a new account")
@@ -42,8 +42,7 @@ public interface AccountAPI {
     @ApiResponse(responseCode = "405", description = "Validation input")
   })
   @PostMapping("/add-account")
-  ResponseEntity addAccount(@Valid @ApiParam(required = true)
-                            @RequestBody AccountRequest accountRequest);
+  ResponseEntity addAccount(@Validated @RequestBody AccountRequest accountRequest);
 
   @Operation(summary = "Find account by ID")
   @ApiResponses(value = {
