@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import java.util.List;
 
 
-@Tag(name = "Account")
+@Tag(name = "account")
 @RequestMapping("/account")
 public interface AccountAPI {
 
